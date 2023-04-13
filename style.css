@@ -61,7 +61,7 @@ input:focus {
     margin-bottom: 84px;
 }
 .mensagem{
-    height: 40px;
+    min-height: 40px;
     padding: 0 9px 0 9px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;

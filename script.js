@@ -5,9 +5,13 @@ let pessoa = {
 }
 let promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", pessoa);
 promessaNome.catch(erroNome);
-pegaMensagens();
-setInterval(pegaMensagens, 3000);
-setInterval(mantemConexao, 5000);
+promessaNome.then(funcionamento);
+
+function funcionamento (){
+    pegaMensagens();
+    setInterval(pegaMensagens, 3000);
+    setInterval(mantemConexao, 5000);
+}
 
 function mandaMensagem(){
     const input = document.querySelector("input");
@@ -40,6 +44,7 @@ function erroNome(){
     }
     promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", pessoa);
     promessaNome.catch(erroNome);
+    promessaNome.then(funcionamento);
 }
 
 function pegaMensagens(){
