@@ -7,7 +7,32 @@ let promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/partici
 promessaNome.catch(erroNome);
 pegaMensagens();
 setInterval(pegaMensagens, 3000);
+setInterval(mantemConexao, 5000);
 
+function mandaMensagem(){
+    const input = document.querySelector("input");
+    let mensagem = {
+        from: pessoa.name,
+	    to: "Todos",
+	    text: input.value,
+	    type: "message"
+    }
+    let promessaMensagem = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", mensagem);
+    promessaMensagem.catch(mensagemErro);
+    promessaMensagem.then(mensagemSucesso);
+}
+function mensagemErro(){
+    window.location.reload();
+}
+function mensagemSucesso(){
+    const input = document.querySelector("input");
+    pegaMensagens();
+    input.value = "";
+}
+
+function mantemConexao(){
+    const promessaConexao = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", pessoa);
+}
 function erroNome(){
     nome = prompt("Qual é o seu nome?(escolha outro nome)");
     pessoa = {
