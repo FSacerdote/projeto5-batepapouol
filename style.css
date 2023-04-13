@@ -40,6 +40,13 @@ body{
 .footer ion-icon{
     font-size: 26px;
 }
+button{
+    background-color: transparent;
+    border: none;
+}
+button:hover{
+    cursor: pointer;
+}
 .footer input{
     font-family: 'Roboto', sans-serif;
     border: none;

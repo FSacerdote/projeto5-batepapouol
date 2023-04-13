@@ -52,7 +52,7 @@ function atualizaPagina(resposta){
     for (let i = 0; i < resposta.data.length; i++) {
         if (resposta.data[i].type === "message") {
             container.innerHTML += `
-            <div class="mensagem">
+            <div class="mensagem" data-test="message">
                 <p>
                     <strong class="cinza">(${resposta.data[i].time})</strong> <strong class="negrito">${resposta.data[i].from}</strong> para <strong class="negrito">${resposta.data[i].to}</strong>: ${resposta.data[i].text}
                 </p>
@@ -61,7 +61,7 @@ function atualizaPagina(resposta){
         }
         if (resposta.data[i].type === "private_message") {
             container.innerHTML += `
-            <div class="mensagem">
+            <div class="mensagem" data-test="message">
                 <p>
                     <strong class="cinza">(${resposta.data[i].time})</strong> <strong class="negrito">${resposta.data[i].from}</strong> reservadamente para <strong class="negrito">${resposta.data[i].to}</strong>: ${resposta.data[i].text}
                 </p>
@@ -70,7 +70,7 @@ function atualizaPagina(resposta){
         }
         if (resposta.data[i].type === "status") {
             container.innerHTML += `
-            <div class="mensagem status">
+            <div class="mensagem status" data-test="message">
                 <p>
                     <strong class="cinza">(${resposta.data[i].time})</strong> <strong class="negrito">${resposta.data[i].from}</strong> ${resposta.data[i].text}
                 </p>

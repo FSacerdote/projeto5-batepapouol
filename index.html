@@ -24,8 +24,10 @@
         </div>
     </div>
     <div class="footer">
-        <input type="text" placeholder="Escreva aqui...">
-        <ion-icon onclick="mandaMensagem()" name="paper-plane-outline"></ion-icon>
+        <input type="text" data-test="input-message" placeholder="Escreva aqui...">
+        <button data-test="send-message">
+            <ion-icon onclick="mandaMensagem()" name="paper-plane-outline"></ion-icon>
+        </button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
