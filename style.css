@@ -41,6 +41,7 @@ body{
     font-size: 26px;
 }
 .footer input{
+    font-family: 'Roboto', sans-serif;
     border: none;
     width: 145px;
     height: 30px;
@@ -49,6 +50,28 @@ input:focus {
     outline: none;
 }
 .container{
-    margin-top: 80px;
-    background-color: red;
+    margin-top: 106px;
+    margin-bottom: 84px;
+}
+.mensagem{
+    height: 40px;
+    padding: 0 9px 0 9px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.negrito{
+    font-weight: 700;
+}
+.cinza{
+    color: #AAAAAA;
+}
+.status{
+    background-color: #DCDCDC;
 }
