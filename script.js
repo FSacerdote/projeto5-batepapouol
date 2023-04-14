@@ -58,6 +58,10 @@ function erroNome(){
 function pegaMensagens(){
     let promessa = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
     promessa.then(atualizaPagina);
+    promessa.catch(erroPegaMsg);
+}
+function erroPegaMsg() {
+    window.location.reload();    
 }
 function atualizaPagina(resposta){
     let container = document.querySelector(".container");
