@@ -1,5 +1,5 @@
 axios.defaults.headers.common['Authorization'] = 'thWBkfA2HxJeEDBnysTfueIT';
-let nome = prompt("Qual é o seu nome?")
+let nome = prompt("Qual é o seu nome?");
 let pessoa = {
     name: nome,
 }
@@ -14,12 +14,12 @@ function funcionamento (){
 }
 
 function mandaMensagem(){
-    const input = document.querySelector("input");
+    let input = document.querySelector("input");
     let mensagem = {
         from: pessoa.name,
 	    to: "Todos",
 	    text: input.value,
-	    type: "message"
+	    type: "message",
     }
     let promessaMensagem = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", mensagem);
     promessaMensagem.catch(mensagemErro);
@@ -29,13 +29,21 @@ function mensagemErro(){
     window.location.reload();
 }
 function mensagemSucesso(){
-    const input = document.querySelector("input");
+    let input = document.querySelector("input");
     pegaMensagens();
     input.value = "";
 }
 
 function mantemConexao(){
-    const promessaConexao = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", pessoa);
+    let promessaConexao = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", pessoa);
+    promessaConexao.then(sucessoConexao);
+    promessaConexao.catch(erroConexao);
+}
+function sucessoConexao(resposta){
+    console.log(resposta);
+}
+function erroConexao(resposta){
+    console.log(resposta);
 }
 function erroNome(){
     nome = prompt("Qual é o seu nome?(escolha outro nome)");
@@ -52,7 +60,7 @@ function pegaMensagens(){
     promessa.then(atualizaPagina);
 }
 function atualizaPagina(resposta){
-    const container = document.querySelector(".container");
+    let container = document.querySelector(".container");
     container.innerHTML = "";
     for (let i = 0; i < resposta.data.length; i++) {
         if (resposta.data[i].type === "message") {
