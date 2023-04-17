@@ -79,6 +79,9 @@ input:focus {
 .cinza{
     color: #AAAAAA;
 }
+.reservado{
+    background-color: #FFDEDE;
+}
 .status{
     background-color: #DCDCDC;
 }

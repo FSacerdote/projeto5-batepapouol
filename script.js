@@ -119,7 +119,7 @@ function atualizaPagina(resposta){
         }
         if (resposta.data[i].type === "private_message") {
             container.innerHTML += `
-            <div class="mensagem" data-test="message">
+            <div class="mensagem reservado" data-test="message">
                 <p>
                     <strong class="cinza">(${resposta.data[i].time})</strong> <strong class="negrito">${resposta.data[i].from}</strong> reservadamente para <strong class="negrito">${resposta.data[i].to}</strong>: ${resposta.data[i].text}
                 </p>
