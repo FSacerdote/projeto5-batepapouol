@@ -12,22 +12,30 @@
     <title>UOL</title>
 </head>
 <body>
-    <div class="header">
+    <div class="login">
         <img src="img/logo.png" alt="">
-        <ion-icon name="people"></ion-icon>
+        <div class="escondido">Entrando...</div>
+        <input data-test="input-name" type="text" placeholder="Digite seu nome">
+        <button data-test="send-name" onclick="mandaNome()">Entrar</button>
     </div>
-    <div class="container">
-        <div class="mensagem">
-            <p>
-                <strong class="cinza">(09:22:28)</strong> <strong class="negrito">João</strong> para <strong class="negrito">Todos</strong>: Bom dia
-            </p>
+    <div class="principal escondido">
+        <div class="header">
+            <img src="img/logo.png" alt="">
+            <ion-icon name="people"></ion-icon>
         </div>
-    </div>
-    <div class="footer">
-        <input type="text" data-test="input-message" placeholder="Escreva aqui...">
-        <button data-test="send-message">
-            <ion-icon onclick="mandaMensagem()" name="paper-plane-outline"></ion-icon>
-        </button>
+        <div class="container">
+            <div class="mensagem">
+                <p>
+                    <strong class="cinza">(09:22:28)</strong> <strong class="negrito">João</strong> para <strong class="negrito">Todos</strong>: Bom dia
+                </p>
+            </div>
+        </div>
+        <div class="footer">
+            <input type="text" data-test="input-message" placeholder="Escreva aqui...">
+            <button onclick="mandaMensagem()" data-test="send-message">
+                <ion-icon  name="paper-plane-outline"></ion-icon>
+            </button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>

@@ -1,20 +1,65 @@
 axios.defaults.headers.common['Authorization'] = 'thWBkfA2HxJeEDBnysTfueIT';
-let nome = prompt("Qual é o seu nome?");
+const login = document.querySelector(".login");
+const principal = document.querySelector(".principal");
+let idMsg;
+let idCon;
 let pessoa = {
-    name: nome,
+    name: undefined,
 }
-let promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", pessoa);
-promessaNome.catch(erroNome);
-promessaNome.then(funcionamento);
+
+// enter enviando mensagem
+
+document.addEventListener("keypress", function(event){
+    if (event.key === "Enter" && login.classList.contains("escondido") === true){
+        mandaMensagem();
+    }
+    if (event.key === "Enter" && login.classList.contains("escondido") === false){
+        mandaNome();
+    }
+});
+
+// funções relativas ao nome 
+
+function mandaNome() {
+    let input = login.querySelector("input");
+    let button = login.querySelector("button");
+    let div = login.querySelector("div")
+    pessoa = {
+        name: input.value,
+    }
+    let promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", pessoa);
+    input.classList.add("escondido");
+    button.classList.add("escondido");
+    div.classList.remove("escondido");
+    promessaNome.catch(erroNome);
+    promessaNome.then(funcionamento);
+}
 
 function funcionamento (){
+    login.classList.add("escondido");
+    login.classList.remove("login");
+    principal.classList.remove("escondido");
     pegaMensagens();
-    setInterval(pegaMensagens, 3000);
-    setInterval(mantemConexao, 5000);
+    if (idMsg === undefined && idCon === undefined){
+        idMsg = setInterval(pegaMensagens, 3000);
+        idCon = setInterval(mantemConexao, 5000);
+    }
+    setTimeout(scroll, 2000);
+}
+function scroll() {
+    let container = document.querySelector(".container");
+    container.scrollIntoView(false);
 }
 
+function erroNome(){
+    window.location.reload();
+}
+
+
+// manda mensagem
+
 function mandaMensagem(){
-    let input = document.querySelector("input");
+    let input = principal.querySelector("input");
     let mensagem = {
         from: pessoa.name,
 	    to: "Todos",
@@ -29,10 +74,13 @@ function mensagemErro(){
     window.location.reload();
 }
 function mensagemSucesso(){
-    let input = document.querySelector("input");
+    let input = principal.querySelector("input");
     pegaMensagens();
     input.value = "";
+    scroll();
 }
+
+// mantem a conexão
 
 function mantemConexao(){
     let promessaConexao = axios.post("https://mock-api.driven.com.br/api/vm/uol/status", pessoa);
@@ -45,15 +93,8 @@ function sucessoConexao(resposta){
 function erroConexao(resposta){
     console.log(resposta);
 }
-function erroNome(){
-    nome = prompt("Qual é o seu nome?(escolha outro nome)");
-    pessoa = {
-        name: nome,
-    }
-    promessaNome = axios.post("https://mock-api.driven.com.br/api/vm/uol/participants", pessoa);
-    promessaNome.catch(erroNome);
-    promessaNome.then(funcionamento);
-}
+
+// get mensagens
 
 function pegaMensagens(){
     let promessa = axios.get("https://mock-api.driven.com.br/api/vm/uol/messages");
